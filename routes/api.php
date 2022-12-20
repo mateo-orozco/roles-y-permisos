@@ -39,6 +39,7 @@ Route::group(['prefix' => 'permissions', 'middleware' =>['auth','role:admin']],f
     Route::get('list-roles-with-permissions',[PermissionController::class,'listRolesWithPermissions']);
     Route::post('crete-role',[PermissionController::class,'createRole']);
     Route::delete('delet-role/{id}',[PermissionController::class,'deleteRole']);
+    Route::post('create-permission',[PermissionController::class,'createPermission']);
 
     Route::group(['prefix' => 'assign'],function($router){
         Route::post('to-role',[PermissionController::class,'assignPermission']);

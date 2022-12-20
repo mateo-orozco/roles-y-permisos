@@ -21,7 +21,7 @@ class PermissionController extends Controller
     public function createRole(Request $request){
         try{
             $request->validate([
-                'name' =>'required|string|ma',
+                'name' =>'required|string',
             ]);
         }catch(\Throwable $th){
             return response()->json([
@@ -36,6 +36,19 @@ class PermissionController extends Controller
         $role->delete();
 
         return "eliminado con exito";
+    }
+    public function createPermission(Request $request){
+        try{
+            $request->validate([
+                'name' =>'required|string',
+            ]);
+        }catch(\Throwable $th){
+            return response()->json([
+                'error' => $th->getMessage()],400);
+        }
+        Permission::create([
+            'name' => $request->name]);
+            return "permiso creado";
     }
     public function assignPermission(Request $request){
         try{
